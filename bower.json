@@ -1,0 +1,20 @@
+{
+  "name": "angular-anvil",
+  "version": "0.0.1",
+  "homepage": "https://github.com/irontec/anvil-angular",
+  "authors": [
+    "Jabi <jabi@irontec.com>"
+  ],
+  "main": ["angular-anvil.module.js","masterhub.js","messagedispatcher.js","nativeinterface.js","publichub.js"],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
