@@ -74,6 +74,9 @@ angular.module('angular-anvil')
             },
             setLanguage : function(lang) {
                 actions.ios._launch('anvil://setLanguage?lang=' + encodeParam(lang));  
+            },
+            requestEnviroment : function() {
+                actions.ios._launch('anvil://requestEnviroment');  
             }
 
          },
@@ -91,7 +94,6 @@ angular.module('angular-anvil')
                  window.anvilInterface.hideBackButton();
              },
              deliverMessage : function(tabName, msg) {
-console.log("DELIVERING MESAGE", prepareMessage(msg));
                  window.anvilInterface.deliverMessage(tabName, prepareMessage(msg));
              },
              hideLoading : function() {
@@ -105,6 +107,9 @@ console.log("DELIVERING MESAGE", prepareMessage(msg));
             },
             setLanguage : function(lang) {
                 window.anvilInterface.setLanguage(lang);
+            },
+            requestEnviroment : function() {
+                window.anvilInterface.requestEnviroment();
             }
          },
          'windowsphone' : {
@@ -134,6 +139,9 @@ console.log("DELIVERING MESAGE", prepareMessage(msg));
              },
              setLanguage : function(lang) {
                  window.external.notify('setLanguage;' + lang); 
+             },
+             requestEnviroment : function() {
+                window.external.notify('requestEnviroment');
              }
          },
          'anvil' : {
@@ -164,7 +172,11 @@ console.log("DELIVERING MESAGE", prepareMessage(msg));
              },
              setLanguage : function(lang) {
                  window.parent.postMessage('setLanguage:' + encodeParam(lang), '*');
-             }
+             },
+             requestEnviroment : function(lang) {
+                 window.parent.postMessage('requestEnviroment', '*');
+             },
+
          }
       };
 
