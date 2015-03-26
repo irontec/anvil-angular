@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('angular-anvil')
-  .service('nativeInterface', ['$location', '$window', function nativeInterface($location, $window) {
+  .service('nativeInterface', ['$location', '$window', '$timeout', function nativeInterface($location, $window, $timeout) {
       
     var currentArch = $location.search().arch || 'anvil'; 
     var ionic = $window.ionic;
@@ -80,36 +80,77 @@ angular.module('angular-anvil')
             }
 
          },
+         androidTimer : 250,
          'android' : {
              setTitle : function(title) {
-                 window.anvilInterface.setTitle(title);
+                if (window.anvilInterface && window.anvilInterface.setTitle) {
+                    window.anvilInterface.setTitle(title);
+                } else {
+                    $timeout(function() {
+                        actions.android.setTitle(title);
+                    },action.androidTimer);
+                }
              },
              showTab : function(tabName) {
-                 window.anvilInterface.showTab(tabName);
+                if (window.anvilInterface && window.anvilInterface.showTab) {
+                    window.anvilInterface.showTab(tabName);
+                } else {
+                    $timeout(function() {
+                        actions.android.showTab(tabName);
+                    },action.androidTimer);
+                }
              },
              showBackButton : function(label) {
-                 window.anvilInterface.showBackButton(label);
+                if (window.anvilInterface && window.anvilInterface.showBackButton) {
+                    window.anvilInterface.showBackButton(label);
+                } else {
+                    $timeout(function() {
+                        actions.android.showBackButton(label);
+                    },action.androidTimer);
+                }
              },
              hideBackButton : function() {
-                 window.anvilInterface.hideBackButton();
+                if (window.anvilInterface && window.anvilInterface.hideBackButton) {
+                    window.anvilInterface.hideBackButton();
+                } else {
+                    $timeout(function() {
+                        actions.android.hideBackButton();
+                    },action.androidTimer);
+                }
              },
              deliverMessage : function(tabName, msg) {
-                 window.anvilInterface.deliverMessage(tabName, prepareMessage(msg));
+                if (window.anvilInterface && window.anvilInterface.deliverMessage) {
+                    window.anvilInterface.deliverMessage(tabName, prepareMessage(msg));
+                } else {
+                    $timeout(function() {
+                        actions.android.deliverMessage(tabName, msg);
+                    },action.androidTimer);
+                }
              },
              hideLoading : function() {
-                 window.anvilInterface.hideLoading(); 
+                if (window.anvilInterface && window.anvilInterface.hideLoading) {
+                    window.anvilInterface.hideLoading(); 
+                }
              },
              showLoading : function(label) {
-                 window.anvilInterface.showLoading(label); 
+                if (window.anvilInterface && window.anvilInterface.showLoading) {
+                    window.anvilInterface.showLoading(label); 
+                }
              },
              openInBrowser : function(url) {
-                window.anvilInterface.openInBrowser(url);                
+                if (window.anvilInterface && window.anvilInterface.openInBrowser) {
+                    window.anvilInterface.openInBrowser(url);
+                }
             },
             setLanguage : function(lang) {
-                window.anvilInterface.setLanguage(lang);
+                if (window.anvilInterface && window.anvilInterface.setLanguage) {
+                    window.anvilInterface.setLanguage(lang);
+                }
             },
             requestEnviroment : function() {
-                window.anvilInterface.requestEnviroment();
+                if (window.anvilInterface && window.anvilInterface.requestEnviroment) {
+                    window.anvilInterface.requestEnviroment();
+                }
             }
          },
          'windowsphone' : {

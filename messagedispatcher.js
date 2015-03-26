@@ -15,13 +15,12 @@ angular.module('angular-anvil')
 
             publichub.registerAction('injectMessage', function(data) {
                 data = angular.fromJson(decodeURIComponent(data));
-
                 if (!data.action) {
                     throw 'Invalid data object received on messageDispatcher';
                 }
 
                 if (!angular.isFunction(actions[data.action])) {
-                    throw 'Received action not register. Nothing to do on messageDispatcher';
+                    throw 'Received action ('+data.action+') not register. Nothing to do on messageDispatcher';
                 }
 
 
