@@ -24,6 +24,8 @@
         hideMenuSection: send('hideMenuSection','identifier'),
         showMenuItem: send('showMenuItem','identifier'),
         hideMenuItem: send('hideMenuItem','identifier'),
+        showBadgeForItem: send('showMenuItem'),
+        hideBadgeForItem: send('hideMenuItem'),
         showMenuHeader: send('showMenuHeader','name','email'),
         hideMenuHeader: send('hideMenuHeader'),
         showHeaderLeftButton: send('showHeaderLeftButton','type'),
