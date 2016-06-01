@@ -23,6 +23,8 @@
         hideMenuSection: send('hideMenuSection'),
         showMenuItem: send('showMenuItem'),
         hideMenuItem: send('hideMenuItem'),
+        showBadgeForItem: send('showBadgeForItem'),
+        hideBadgeForItem: send('hideBadgeForItem'),
         showMenuHeader: send('showMenuHeader'),
         hideMenuHeader: send('hideMenuHeader'),
         showHeaderLeftButton: send('showHeaderLeftButton'),

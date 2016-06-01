@@ -24,6 +24,8 @@
         hideMenuSection: send('hideMenuSection','identifier'),
         showMenuItem: send('showMenuItem','identifier'),
         hideMenuItem: send('hideMenuItem','identifier'),
+        showBadgeForItem: send('showBadgeForItem','identifier','badge'),
+        hideBadgeForItem: send('hideBadgeForItem','identifier'),
         showMenuHeader: send('showMenuHeader','name','email'),
         hideMenuHeader: send('hideMenuHeader'),
         showHeaderLeftButton: send('showHeaderLeftButton','type'),
@@ -70,7 +72,11 @@
                 args.push(arg2name + '=' + _toString(arg2));
             }
 
-            _launchIframe('anvil://' + methodName + '?' + args.join('&'));
+            if (window.webkit && window.webkit.messageHandlers) {
+                window.webkit.messageHandlers[methodName].postMessage(args);
+            } else {
+                _launchIframe('anvil://' + methodName + '?' + args.join('&'));
+            }
 
         }
     }

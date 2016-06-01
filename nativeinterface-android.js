@@ -6,7 +6,7 @@
     .factory('nativeInterfaceAndroid', nativeInterfaceAndroid);
 
   /** @ngInject */
-  function nativeInterfaceAndroid($window, $timeout) {
+  function nativeInterfaceAndroid($window, $timeout, $log) {
 
     var androidInterfaceName = 'anvilInterface';
     $window.anvilInterface = $window.anvilInterface || {};
@@ -26,6 +26,8 @@
         hideMenuSection: send('hideMenuSection'),
         showMenuItem: send('showMenuItem'),
         hideMenuItem: send('hideMenuItem'),
+        showBadgeForItem: send('showBadgeForItem'),
+        hideBadgeForItem: send('hideBadgeForItem'),
         showMenuHeader: send('showMenuHeader'),
         hideMenuHeader: send('hideMenuHeader'),
         showHeaderLeftButton: send('showHeaderLeftButton'),
@@ -43,7 +45,6 @@
         return function (){
             if (angular.isDefined($window[androidInterfaceName]) &&
                     angular.isFunction($window[androidInterfaceName][methodName])) {
-
                 $window[androidInterfaceName][methodName].apply($window, arguments);
             } else {
                 // Le damos una segunda oportunidad de 400ms para que android "escriba su interfaz"
