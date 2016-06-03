@@ -66,23 +66,28 @@
     }
 
     function send(methodName, arg1name, arg2name) {
+
         return function(arg1, arg2) {
 
             var args = [];
+            var dictionary = {};
             if (angular.isDefined(arg1)) {
                 args.push(arg1name + '=' + _toString(arg1));
+                dictionary[arg1name] = arg1;
             }
             if (angular.isDefined(arg2)) {
                 args.push(arg2name + '=' + _toString(arg2));
+                dictionary[arg2name] = arg2;
             }
 
             if (window.webkit && window.webkit.messageHandlers) {
-                window.webkit.messageHandlers[methodName].postMessage(args);
+                window.webkit.messageHandlers[methodName].postMessage(dictionary);
             } else {
                 _launchIframe('anvil://' + methodName + '?' + args.join('&'));
             }
 
         }
+
     }
 
 
