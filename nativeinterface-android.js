@@ -32,6 +32,7 @@
         setSectionSelectedBackgroundColor: send('setSectionSelectedBackgroundColor'),
         setFooterBackgroundColor: send('setFooterBackgroundColor'),
         setSectionBold: send('setSectionBold'),
+        setMenuItemSelected: send('setMenuItemSelected'),
         showMenuHeader: send('showMenuHeader'),
         hideMenuHeader: send('hideMenuHeader'),
         showHeaderLeftButton: send('showHeaderLeftButton'),
@@ -49,7 +50,7 @@
         return function (){
             if (angular.isDefined($window[androidInterfaceName]) &&
                     angular.isFunction($window[androidInterfaceName][methodName])) {
-                $window[androidInterfaceName][methodName].apply($window, arguments);
+                $window[androidInterfaceName][methodName].apply($window[androidInterfaceName], arguments);
             } else {
                 // Le damos una segunda oportunidad de 400ms para que android "escriba su interfaz"
                 if (!angular.isDefined(recheck)) {

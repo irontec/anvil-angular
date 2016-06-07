@@ -30,6 +30,7 @@
         setSectionSelectedBackgroundColor: send('setSectionSelectedBackgroundColor','identifier','color'),
         setFooterBackgroundColor: send('setFooterBackgroundColor','color'),
         setSectionBold: send('setSectionBold','identifier','bold'),
+        setMenuItemSelected: send('setMenuItemSelected','identifier'),
         showMenuHeader: send('showMenuHeader','name','email'),
         hideMenuHeader: send('hideMenuHeader'),
         showHeaderLeftButton: send('showHeaderLeftButton','type'),
