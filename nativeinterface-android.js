@@ -38,7 +38,8 @@
         showHeaderLeftButton: send('showHeaderLeftButton'),
         hideHeaderLeftButton: send('hideHeaderLeftButton'),
         showHeaderRightButton: send('showHeaderRightButton'),
-        hideHeaderRightButton: send('hideHeaderRightButton')
+        hideHeaderRightButton: send('hideHeaderRightButton'),
+        goBackground: send('goBackground')
     };
 
 
