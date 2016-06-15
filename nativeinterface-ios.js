@@ -14,7 +14,7 @@
         showLoading: send('showLoading','label'),
         hideLoading: send('hideLoading'),
         openInBrowser: send('openInBrowser','url'),
-        setLanguage: send('setLanguage','lang'),
+        setLanguage: send('setLanguage','language'),
         requestEnviroment: send('requestEnviroment'),
         showMenu: send('showMenu'),
         hideMenu: send('hideMenu'),
