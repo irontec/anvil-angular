@@ -9,8 +9,8 @@
  */
 angular.module('angular-anvil')
   .service('nativeInterface', ['$location', '$window', '$timeout', function nativeInterface($location, $window, $timeout) {
-      
-    var currentArch = $location.search().arch || 'anvil'; 
+
+    var currentArch = $location.search().arch || 'anvil';
     var ionic = $window.ionic;
 
     if (ionic.Platform.isIOS()) {
@@ -20,8 +20,8 @@ angular.module('angular-anvil')
     } else if (ionic.Platform.isWindowsPhone()) {
         currentArch = 'windowsphone';
     }
-      
-      
+
+
       var encodeParam = function(param) {
           return encodeURIComponent(param).
                     replace(/['()]/g, $window.escape).
@@ -29,11 +29,11 @@ angular.module('angular-anvil')
                             replace(/%(?:7C|60|5E)/g, $window.unescape);
 
       };
-      
+
       var prepareMessage = function(msg) {
         return encodeParam(angular.toJson(msg, false));
       };
-      
+
       // Public API here
       var actions = {
          'ios' : {
@@ -73,10 +73,16 @@ angular.module('angular-anvil')
                 actions.ios._launch('anvil://openInBrowser?url=' + encodeParam(url));
             },
             setLanguage : function(lang) {
-                actions.ios._launch('anvil://setLanguage?lang=' + encodeParam(lang));  
+                actions.ios._launch('anvil://setLanguage?lang=' + encodeParam(lang));
             },
             requestEnviroment : function() {
-                actions.ios._launch('anvil://requestEnviroment');  
+                actions.ios._launch('anvil://requestEnviroment');
+            },
+            hideMenuItem: function(identifier) {
+                actions.ios._launch('anvil://hideMenuItem?identifier=' + encodeParam(identifier));
+            },
+            showMenuItem: function(identifier) {
+                actions.ios._launch('anvil://showMenuItem?identifier=' + encodeParam(identifier));
             }
 
          },
@@ -129,12 +135,12 @@ angular.module('angular-anvil')
              },
              hideLoading : function() {
                 if (window.anvilInterface && window.anvilInterface.hideLoading) {
-                    window.anvilInterface.hideLoading(); 
+                    window.anvilInterface.hideLoading();
                 }
              },
              showLoading : function(label) {
                 if (window.anvilInterface && window.anvilInterface.showLoading) {
-                    window.anvilInterface.showLoading(label); 
+                    window.anvilInterface.showLoading(label);
                 }
              },
              openInBrowser : function(url) {
@@ -151,11 +157,21 @@ angular.module('angular-anvil')
                 if (window.anvilInterface && window.anvilInterface.requestEnviroment) {
                     window.anvilInterface.requestEnviroment();
                 }
+            },
+            hideMenuItem: function(identifier) {
+                if (window.anvilInterface && window.anvilInterface.hideMenuItem) {
+                    window.anvilInterface.hideMenuItem(identifier);
+                }
+            },
+            showMenuItem: function(identifier) {
+                if (window.anvilInterface && window.anvilInterface.showMenuItem) {
+                    window.anvilInterface.showMenuItem(identifier);
+                }
             }
          },
          'windowsphone' : {
              setTitle : function(title) {
-                 window.external.notify('setTitle;'+ encodeParam(title)); 
+                 window.external.notify('setTitle;'+ encodeParam(title));
              },
              showTab : function(tabName) {
                  window.external.notify('showTab;'+ encodeParam(tabName));
@@ -170,19 +186,25 @@ angular.module('angular-anvil')
                  window.external.notify('deliverMessage;' + encodeParam(tabName) + ';' +prepareMessage(msg));
              },
              hideLoading : function() {
-                 window.external.notify('hideLoading'); 
+                 window.external.notify('hideLoading');
              },
              showLoading : function(label) {
-                 window.external.notify('showLoading;' + encodeParam(label)); 
+                 window.external.notify('showLoading;' + encodeParam(label));
              },
              openInBrowser : function(url) {
-                 window.external.notify('openInBrowser;' + encodeParam(url)); 
+                 window.external.notify('openInBrowser;' + encodeParam(url));
              },
              setLanguage : function(lang) {
-                 window.external.notify('setLanguage;' + lang); 
+                 window.external.notify('setLanguage;' + lang);
              },
              requestEnviroment : function() {
                 window.external.notify('requestEnviroment');
+             },
+             hideMenuItem: function(identifier) {
+                window.external.notify('hideMenuItem;' + identifier);
+             },
+             showMenuItem: function(identifier) {
+                window.external.notify('showMenuItem;' + identifier);
              }
          },
          'anvil' : {
@@ -202,11 +224,11 @@ angular.module('angular-anvil')
                  window.parent.postMessage('deliverMessage:' + encodeParam(tabName) + '|' + prepareMessage(msg), '*');
              },
              hideLoading : function() {
-                 window.parent.postMessage('hideLoading', '*'); 
+                 window.parent.postMessage('hideLoading', '*');
              },
              showLoading : function(label) {
                  label = label || 'Cargando';
-                 window.parent.postMessage('showLoading:' + encodeParam(label), '*'); 
+                 window.parent.postMessage('showLoading:' + encodeParam(label), '*');
              },
              openInBrowser : function(url) {
                 window.open(url);
@@ -217,6 +239,14 @@ angular.module('angular-anvil')
              requestEnviroment : function(lang) {
                  window.parent.postMessage('requestEnviroment', '*');
              },
+             hideMenuItem: function(identifier) {
+                window.parent.postMessage('hideMenuItem:' + encodeParam(identifier), '*');
+             },
+             showMenuItem: function(identifier) {
+                window.parent.postMessage('showMenuItem:' + encodeParam(identifier), '*');
+
+             }
+
 
          }
       };
