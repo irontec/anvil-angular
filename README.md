@@ -35,7 +35,7 @@ v0.1.0 > Anvil²
 * menuClosed(env)
 * headerLeftButtonAction(env)
 * headerRightButtonAction(env)
-
+* showPushNotification(env)
 
 ### Available method JS >> native (nativeInterface)
 * setTitle
