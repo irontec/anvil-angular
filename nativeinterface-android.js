@@ -16,6 +16,7 @@
         showLoading: send('showLoading'),
         hideLoading: send('hideLoading'),
         openInBrowser: send('openInBrowser'),
+        sendWidgetConfiguration: send('sendWidgetConfiguration'),
         setLanguage: send('setLanguage'),
         requestEnviroment: send('requestEnviroment'),
         showMenu: send('showMenu'),
