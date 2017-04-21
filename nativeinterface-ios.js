@@ -14,6 +14,7 @@
         showLoading: send('showLoading','label'),
         hideLoading: send('hideLoading'),
         openInBrowser: send('openInBrowser','url'),
+        openExternalApp: send('openExternalApp', 'appConfiguration'),
         sendWidgetConfiguration: send('sendWidgetConfiguration', 'widgets'),
         setLanguage: send('setLanguage','language'),
         requestEnviroment: send('requestEnviroment'),

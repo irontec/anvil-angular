@@ -13,6 +13,7 @@
         showLoading: send('showLoading'),
         hideLoading: send('hideLoading'),
         openInBrowser: send('openInBrowser'),
+        openExternalApp: send('openExternalApp'),
         sendWidgetConfiguration: send('sendWidgetConfiguration'),
         setLanguage: send('setLanguage'),
         requestEnviroment: send('requestEnviroment'),
