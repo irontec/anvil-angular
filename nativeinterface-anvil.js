@@ -1,6 +1,5 @@
-(function() {
-  'use strict';
-
+'use strict';
+module.exports = function(angular) {
   angular
     .module('angular-anvil')
     .factory('nativeInterfaceAnvil', nativeInterfaceAnvil);
@@ -69,4 +68,4 @@
     }
   }
 
-})();
+};
