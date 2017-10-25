@@ -36,12 +36,16 @@ v0.1.0 > Anvil²
 * headerLeftButtonAction(env)
 * headerRightButtonAction(env)
 * showPushNotification(env)
+* getAuthCodes(env)
 
 ### Available method JS >> native (nativeInterface)
 * setTitle
 * showLoading
 * hideLoading
 * openInBrowser
+* openExternalApp
+* setAuthCodes
+* setWidgetConfiguration
 * setLanguage
 * requestEnviroment
 * showMenu
