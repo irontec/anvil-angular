@@ -8,7 +8,8 @@
   /** @ngInject */
   function hub($window, $timeout) {
 
-    var methods = ['init', 'resume', 'notifiyEnviroment', 'menuHeaderAction', 'menuItemAction', 'menuOpened', 'menuClosed', 'backButton', 'headerLeftButtonAction', 'headerRightButtonAction', 'showPushNotification'];
+    var methods = ['init', 'resume', 'notifiyEnviroment', 'menuHeaderAction', 'menuItemAction', 'menuOpened', 'menuClosed',
+                   'backButton', 'headerLeftButtonAction', 'headerRightButtonAction', 'showPushNotification', 'getAuthCodes'];
 
     /**
      * Si estamos en una navegador, nos ponemos  la escucha de mensajes (anvil)
