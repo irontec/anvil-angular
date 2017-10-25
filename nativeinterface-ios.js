@@ -16,6 +16,7 @@
         openInBrowser: send('openInBrowser','url'),
         openExternalApp: send('openExternalApp', 'iosUrl', 'iosScheme'),
         setWidgetConfiguration: send('setWidgetConfiguration', 'configuration'),
+        setAuthCodes: send('setAuthCodes', 'AuthCodes'),
         setLanguage: send('setLanguage','language'),
         requestEnviroment: send('requestEnviroment'),
         showMenu: send('showMenu'),
