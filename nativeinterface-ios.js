@@ -15,7 +15,7 @@
         hideLoading: send('hideLoading'),
         openInBrowser: send('openInBrowser','url'),
         openExternalApp: send('openExternalApp', 'iosUrl', 'iosScheme'),
-        sendWidgetConfiguration: send('sendWidgetConfiguration', 'widgets'),
+        setWidgetConfiguration: send('setWidgetConfiguration', 'configuration'),
         setLanguage: send('setLanguage','language'),
         requestEnviroment: send('requestEnviroment'),
         showMenu: send('showMenu'),
