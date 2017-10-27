@@ -36,7 +36,6 @@ v0.1.0 > Anvil²
 * headerLeftButtonAction(env)
 * headerRightButtonAction(env)
 * showPushNotification(env)
-* getAuthCodes(env)
 
 ### Available method JS >> native (nativeInterface)
 * setTitle
