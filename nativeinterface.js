@@ -1,28 +1,20 @@
-'use strict';
-module.exports = function(angular) {
+nativeInterface.$inject = ["$window", "nativeInterfaceAnvil", "nativeInterfaceIos", "nativeInterfaceAndroid"];
 
-  angular
-    .module('angular-anvil')
-    .factory('nativeInterface', nativeInterface);
-
-  /** @ngInject */
-  function nativeInterface($window, nativeInterfaceAnvil, nativeInterfaceIos, nativeInterfaceAndroid) {
-
-
+function nativeInterface($window, nativeInterfaceAnvil, nativeInterfaceIos, nativeInterfaceAndroid) {
     if ($window.ionic.Platform.isIOS()) {
 
-      return nativeInterfaceIos;
+        return nativeInterfaceIos;
 
-    } else if (ionic.Platform.isAndroid()) {
+    } else if ($window.ionic.Platform.isAndroid()) {
 
-      return nativeInterfaceAndroid;
+        return nativeInterfaceAndroid;
 
     } else {
 
-      return nativeInterfaceAnvil;
+        return nativeInterfaceAnvil;
 
     }
 
-  }
+}
 
-};
+export default nativeInterface;

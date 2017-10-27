@@ -1,31 +1,34 @@
-(function() {
-  'use strict';
+hub.$inject = ["$window", "$timeout", "$log"];
 
-  angular
-    .module('angular-anvil')
-    .factory('hub', hub);
-
-  /** @ngInject */
-  function hub($window, $timeout) {
-
-    var methods = ['init', 'resume', 'notifiyEnviroment', 'menuHeaderAction', 'menuItemAction', 'menuOpened', 'menuClosed',
-                   'backButton', 'headerLeftButtonAction', 'headerRightButtonAction', 'showPushNotification', 'getAuthCodes'];
+function hub($window, $timeout, $log) {
+    const methods = [
+        "init",
+        "resume",
+        "notifiyEnviroment",
+        "menuHeaderAction",
+        "menuItemAction",
+        "menuOpened",
+        "menuClosed",
+        "backButton",
+        "headerLeftButtonAction",
+        "headerRightButtonAction",
+        "showPushNotification",
+        "getAuthCodes"
+    ];
 
     /**
      * Si estamos en una navegador, nos ponemos  la escucha de mensajes (anvil)
      */
     if (!$window.ionic.Platform.isWebView()) {
-      registerListener(methods);
+        registerListeners();
     }
-
 
     if (!angular.isObject($window.device)) {
         $window.device = {};
     }
 
-
-    var service = {
-        on : registerFunction
+    const service = {
+        on: registerFunction
     };
 
     return service;
@@ -39,44 +42,51 @@
         $window.device[functionName] = callback;
     }
 
-
     /**
      * Escuchador para plataforma anvil.
      * No se ejecutará en modo nativo
      */
-    function registerListener(methods) {
-      $window.addEventListener('message', function(e) {
+    function registerListeners() {
 
-          var action = e.data.split(':')[0];
-
-          if ( (methods.indexOf(action) === -1) ||
-              (!angular.isFunction($window.device[action])) ) {
-              return;
-          }
-
-
-          var args = e.data.split(':')[1] || '';
-
-          args = args.split('|') || [];
-
-
-          for(var i=0; i<args.length; i++) {
-            try {
-              args[i] = angular.fromJson(decodeURIComponent(args[i]));
-            } catch (e) {
-              args[i] = decodeURIComponent(args[i]);
+        $window.addEventListener("message", function (e) {
+            const str = e.data;
+            // webpack injects messages over here? (as objects 🚀)
+            if (typeof str !== 'string') {
+                return;
             }
-          }
 
-          $timeout(function() {
-            $window.device[action].apply($window.device[action], args);
-          },0);
+            // webpack injects messages over here? (as string 🚀)
+            const fragments = str.split(":");
+            if (fragments.length !== 2) {
+                return;
+            }
 
-      });
+
+            const [action, payload] = fragments;
+
+            if (
+                methods.indexOf(action) === -1 ||
+                !angular.isFunction(window.device[action])
+            ) {
+                return;
+            }
+
+
+            const args = payload.split("|") || [];
+
+            for (let i = 0; i < args.length; i++) {
+                try {
+                    args[i] = angular.fromJson(decodeURIComponent(args[i]));
+                } catch (exception) {
+                    args[i] = decodeURIComponent(args[i]);
+                }
+            }
+
+            $timeout(function () {
+                $window.device[action].apply($window.device[action], args);
+            }, 0);
+        });
     }
+}
 
-  }
-
-})();
-
-
+export default hub;
