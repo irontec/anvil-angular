@@ -18,7 +18,7 @@
         openInBrowser: send('openInBrowser'),
         openExternalApp: send('openExternalApp'),
         setWidgetConfiguration: send('setWidgetConfiguration'),
-        setAuthCodes: send('setAuthCodes', 'AuthCodes'),
+        setAuthCodes: send('setAuthCodes'),
         setLanguage: send('setLanguage'),
         requestEnviroment: send('requestEnviroment'),
         showMenu: send('showMenu'),
@@ -63,7 +63,7 @@
                         send(methodName, true).apply(service, arguments);
                     },400);
                 } else {
-                    throw 'interfaz no presente en android';
+                    throw 'interfaz no presente en android: ' + methodName, arguments;
                 }
             }
         }

@@ -15,7 +15,7 @@
         openInBrowser: send('openInBrowser'),
         openExternalApp: send('openExternalApp'),
         setWidgetConfiguration: send('setWidgetConfiguration'),
-        setAuthCodes: send('setAuthCodes', 'AuthCodes'),
+        setAuthCodes: send('setAuthCodes'),
         setLanguage: send('setLanguage'),
         requestEnviroment: send('requestEnviroment'),
         showMenu: send('showMenu'),
