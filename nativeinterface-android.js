@@ -1,5 +1,4 @@
 (function() {
-  'use strict';
 
   angular
     .module('angular-anvil')
@@ -52,6 +51,9 @@
 
     function send(methodName, recheck) {
         return function (){
+            if(typeof ( arguments[0]) === 'object'){
+                arguments[0] = JSON.stringify(arguments[0]).replace(/"/g, '\\\"');
+            }
             if (angular.isDefined($window[androidInterfaceName]) &&
                     angular.isFunction($window[androidInterfaceName][methodName])) {
                 $window[androidInterfaceName][methodName].apply($window[androidInterfaceName], arguments);

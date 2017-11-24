@@ -57,7 +57,7 @@
     }
 
     function _launchIframe(url)  {
-        console.log("going to ", url);
+        console.log("going to " + url);
         var iframe = document.createElement('iframe');
         iframe.setAttribute('width','1px');
         iframe.setAttribute('height','1px');
