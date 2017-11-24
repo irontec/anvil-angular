@@ -43,7 +43,7 @@ v0.1.0 > Anvil²
 * hideLoading
 * openInBrowser
 * openExternalApp
-* setAuthCodes
+* setReauthConfiguration
 * setWidgetConfiguration
 * setLanguage
 * requestEnviroment
