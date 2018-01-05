@@ -12,8 +12,7 @@ function hub($window, $timeout, $log) {
         "backButton",
         "headerLeftButtonAction",
         "headerRightButtonAction",
-        "showPushNotification",
-        "getAuthCodes"
+        "showPushNotification"
     ];
 
     /**

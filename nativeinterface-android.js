@@ -10,8 +10,8 @@ function nativeInterfaceAndroid($window, $timeout) {
         hideLoading: send("hideLoading"),
         openInBrowser: send("openInBrowser"),
         openExternalApp: send("openExternalApp"),
+        setReauthConfiguration: send('setReauthConfiguration'),
         setWidgetConfiguration: send("setWidgetConfiguration"),
-        setAuthCodes: send("setAuthCodes", "AuthCodes"),
         setLanguage: send("setLanguage"),
         requestEnviroment: send("requestEnviroment"),
         showMenu: send("showMenu"),
@@ -42,6 +42,9 @@ function nativeInterfaceAndroid($window, $timeout) {
 
     function send(methodName, recheck) {
         return function () {
+            if(typeof ( arguments[0]) === 'object'){
+                arguments[0] = JSON.stringify(arguments[0]).replace(/"/g, '\\\"');
+            }
             if (
                 angular.isDefined($window[androidInterfaceName]) &&
                 angular.isFunction($window[androidInterfaceName][methodName])
@@ -58,7 +61,7 @@ function nativeInterfaceAndroid($window, $timeout) {
                         send(methodName, true).apply(service, arguments);
                     }, 400);
                 } else {
-                    throw "interfaz no presente en android";
+                    throw 'interfaz no presente en android: ' + methodName, arguments;
                 }
             }
         };

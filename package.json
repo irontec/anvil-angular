@@ -1,6 +1,6 @@
 {
-  "name": "anvil-angular",
-  "version": "0.3.0",
+  "name": "@irontec/anvil-angular",
+  "version": "0.3.2",
   "description": "Angularjs services for anvil enviroments",
   "main": "index.js",
   "scripts": {
