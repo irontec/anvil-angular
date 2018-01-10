@@ -12,7 +12,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'angular-anvil.min.js',
-        libraryTarget: 'umd'
+        library: {
+            root: "angular-anvil",
+            commonjs: "angular-anvil"
+        },
+        libraryTarget: 'umd',
+        umdNamedDefine: true
+
     },
     module: {
         loaders: [{
