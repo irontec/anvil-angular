@@ -2,7 +2,7 @@
   "name": "@irontec/anvil-angular",
   "version": "0.4.1",
   "description": "Angularjs services for anvil enviroments",
-  "main": "index.js",
+  "main": "src/index.js",
   "browser": "dist/angular-anvil.min.js",
   "scripts": {
     "start": "webpack -w",
