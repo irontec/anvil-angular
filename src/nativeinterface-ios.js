@@ -32,7 +32,10 @@ function nativeInterfaceIos($window, $timeout) {
         showHeaderLeftButton: send("showHeaderLeftButton", "type"),
         hideHeaderLeftButton: send("hideHeaderLeftButton"),
         showHeaderRightButton: send("showHeaderRightButton", "type"),
-        hideHeaderRightButton: send("hideHeaderRightButton")
+        hideHeaderRightButton: send("hideHeaderRightButton"),
+        setStorageItem: send("setStorageItem", "value", "key"),
+        removeStorageItem: send("removeStorageItem", "key"),
+        removeAllStorage: send("removeAllStorage")
     };
 
     return service;
