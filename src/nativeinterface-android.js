@@ -35,7 +35,10 @@ function nativeInterfaceAndroid($window, $timeout) {
         hideHeaderLeftButton: send("hideHeaderLeftButton"),
         showHeaderRightButton: send("showHeaderRightButton"),
         hideHeaderRightButton: send("hideHeaderRightButton"),
-        goBackground: send("goBackground")
+        goBackground: send("goBackground"),
+        setStorageItem: send("setStorageItem", "value", "key"),
+        removeStorageItem: send("removeStorageItem", "key"),
+        removeAllStorage: send("removeAllStorage")
     };
 
     return service;
