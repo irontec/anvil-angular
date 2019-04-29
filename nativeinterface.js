@@ -167,6 +167,16 @@ angular.module('angular-anvil')
                 if (window.anvilInterface && window.anvilInterface.showMenuItem) {
                     window.anvilInterface.showMenuItem(identifier);
                 }
+            },
+            init: function(identifier) {
+                if (window.anvilInterface && window.anvilInterface.init) {
+                    window.anvilInterface.init(identifier);
+                }
+            },
+            changeStatus: function(status) {
+                if (window.anvilInterface && window.anvilInterface.changeStatus) {
+                    window.anvilInterface.changeStatus(status);
+                }
             }
          },
          'windowsphone' : {
